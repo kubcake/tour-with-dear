@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เที่ยวไทยไปกับเรา | Tour Booking</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,"Noto Sans Thai",sans-serif;background:#f6f8fb;color:#172033}
+nav{height:70px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 7%;box-shadow:0 2px 12px #00000010;position:sticky;top:0;z-index:10}
+.logo{font-size:22px;font-weight:800;color:#087f8c}.logo span{color:#f29d38}
+nav a{margin-left:25px;text-decoration:none;color:#39445a;font-weight:600}
+.hero{min-height:470px;padding:80px 7%;display:flex;align-items:center;background:linear-gradient(90deg,#062f38dd,#062f3855),url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=85') center/cover;color:white}
+.hero h1{font-size:52px;max-width:650px;line-height:1.1;margin-bottom:18px}.hero p{font-size:19px;margin-bottom:28px}
+.btn{border:0;border-radius:12px;padding:14px 24px;background:#f29d38;color:white;font-size:16px;font-weight:700;cursor:pointer}
+.section{padding:55px 7%}.section h2{font-size:30px;margin-bottom:25px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 8px 25px #0000000d}
+.card img{width:100%;height:190px;object-fit:cover}.card-body{padding:20px}.card h3{font-size:20px;margin-bottom:8px}.meta{color:#687386;font-size:14px;margin-bottom:14px}.price{font-size:21px;font-weight:800;color:#087f8c;margin-bottom:15px}
+.booking{display:grid;grid-template-columns:1fr 1fr;gap:28px;background:#fff;border-radius:20px;padding:28px;box-shadow:0 8px 25px #0000000d}
+label{display:block;font-weight:700;margin-bottom:7px}input,select{width:100%;padding:13px;border:1px solid #dce1e8;border-radius:10px;margin-bottom:17px;font-size:15px}
+.summary{background:#f1fafb;padding:22px;border-radius:15px}.summary h3{margin-bottom:15px}.total{font-size:27px;font-weight:800;color:#087f8c;margin:12px 0}
+footer{text-align:center;padding:35px;color:#748095}
+@media(max-width:800px){.cards{grid-template-columns:1fr}.booking{grid-template-columns:1fr}.hero h1{font-size:38px}nav{padding:0 5%}nav a{display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">เที่ยวไทย<span>ไปกับเรา</span></div>
+  <div><a href="#tours">ทัวร์ทั้งหมด</a><a href="#booking">จองทัวร์</a></div>
+</nav>
+
+<section class="hero">
+  <div>
+    <h1>เที่ยวให้สนุก<br>จองง่ายในไม่กี่คลิก</h1>
+    <p>รวมทัวร์ทะเลและกิจกรรมยอดนิยม พร้อมระบบจองออนไลน์</p>
+    <a href="#tours"><button class="btn">ดูทัวร์ทั้งหมด</button></a>
+  </div>
+</section>
+
+<section class="section" id="tours">
+  <h2>ทัวร์ยอดนิยม</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&w=900&q=80">
+      <div class="card-body"><h3>เกาะพีพี 1 วัน</h3><div class="meta">ภูเก็ต • 08:00 - 17:00</div><div class="price">฿1,490 / คน</div><button class="btn" onclick="chooseTour('เกาะพีพี 1 วัน',1490)">จองทัวร์นี้</button></div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=900&q=80">
+      <div class="card-body"><h3>กระบี่ 4 เกาะ</h3><div class="meta">กระบี่ • 09:00 - 16:30</div><div class="price">฿1,290 / คน</div><button class="btn" onclick="chooseTour('กระบี่ 4 เกาะ',1290)">จองทัวร์นี้</button></div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?auto=format&fit=crop&w=900&q=80">
+      <div class="card-body"><h3>เกาะสิมิลัน</h3><div class="meta">พังงา • 07:00 - 18:00</div><div class="price">฿2,390 / คน</div><button class="btn" onclick="chooseTour('เกาะสิมิลัน',2390)">จองทัวร์นี้</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="booking">
+<h2>จองทัวร์</h2>
+<div class="booking">
+  <div>
+    <label>เลือกทัวร์</label>
+    <select id="tour" onchange="update()">
+      <option value="1490">เกาะพีพี 1 วัน — ฿1,490</option>
+      <option value="1290">กระบี่ 4 เกาะ — ฿1,290</option>
+      <option value="2390">เกาะสิมิลัน — ฿2,390</option>
+    </select>
+    <label>วันที่เดินทาง</label><input type="date" id="date">
+    <label>จำนวนผู้เดินทาง</label><input type="number" id="people" value="2" min="1" max="20" oninput="update()">
+    <label>ชื่อผู้จอง</label><input id="name" placeholder="ชื่อ-นามสกุล">
+    <label>เบอร์โทร</label><input id="phone" placeholder="08x-xxx-xxxx">
+  </div>
+  <div class="summary">
+    <h3>สรุปการจอง</h3>
+    <p id="selected">เกาะพีพี 1 วัน</p>
+    <p>จำนวน: <span id="count">2</span> คน</p>
+    <div class="total" id="total">฿2,980</div>
+    <button class="btn" onclick="confirmBooking()">ยืนยันการจอง</button>
+    <p id="result" style="margin-top:16px;font-weight:700"></p>
+  </div>
+</div>
+</section>
+<footer>© 2026 เที่ยวไทยไปกับเรา — ตัวอย่างเว็บไซต์จองทัวร์</footer>
+
+<script>
+function update(){
+  const sel=document.getElementById('tour');
+  const price=Number(sel.value), n=Math.max(1,Number(document.getElementById('people').value)||1);
+  document.getElementById('count').textContent=n;
+  document.getElementById('selected').textContent=sel.options[sel.selectedIndex].text.split(' — ')[0];
+  document.getElementById('total').textContent='฿'+(price*n).toLocaleString();
+}
+function chooseTour(name,price){
+  const sel=document.getElementById('tour');
+  for(let i=0;i<sel.options.length;i++) if(sel.options[i].value==price) sel.selectedIndex=i;
+  update(); document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+}
+function confirmBooking(){
+  const name=document.getElementById('name').value.trim();
+  const date=document.getElementById('date').value;
+  if(!name || !date){document.getElementById('result').textContent='กรุณากรอกชื่อและวันที่เดินทาง';return;}
+  const code='TH'+Math.floor(100000+Math.random()*900000);
+  document.getElementById('result').textContent='จองสำเร็จ! เลขที่การจอง '+code;
+}
+update();
+</script>
+</body>
+</html>
